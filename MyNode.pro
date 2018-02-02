@@ -2,7 +2,7 @@
 #
 # Project created by QtCreator 2018-02-02T14:38:36
 #
-#-------------------------------------------------
+#-------------------------------------------------yyy
 
 QT       += core gui
 
@@ -25,10 +25,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mynote.cpp
+        mynote.cpp \
+    finddialog.cpp
 
 HEADERS += \
-        mynote.h
+        mynote.h \
+    finddialog.h
 
 FORMS += \
         mynote.ui

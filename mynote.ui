@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>MyNote</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 0, 0);</string>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <property name="leftMargin">
@@ -28,11 +31,14 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="QTextEdit" name="textEdit">
+     <widget class="QTextEdit" name="edit_text">
       <property name="font">
        <font>
         <pointsize>20</pointsize>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
      </widget>
     </item>
@@ -56,31 +62,49 @@
     <addaction name="actionsave"/>
     <addaction name="actionsaveAs"/>
     <addaction name="separator"/>
-    <addaction name="actionexit"/>
+    <addaction name="action_pag_set"/>
+    <addaction name="action_print"/>
+    <addaction name="separator"/>
+    <addaction name="action_close"/>
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
      <string>编辑(&amp;E)</string>
     </property>
-    <addaction name="actioncopy"/>
-    <addaction name="actionpaste"/>
-    <addaction name="actionfind"/>
-    <addaction name="actiondatatime"/>
+    <addaction name="action_cancel"/>
+    <addaction name="separator"/>
+    <addaction name="action_cut"/>
+    <addaction name="action_copy"/>
+    <addaction name="action_past"/>
+    <addaction name="action_del"/>
+    <addaction name="separator"/>
+    <addaction name="action1_find"/>
+    <addaction name="action_find_next"/>
+    <addaction name="action_replace"/>
+    <addaction name="action_turn_to"/>
+    <addaction name="separator"/>
+    <addaction name="action_select_all"/>
+    <addaction name="action_date"/>
    </widget>
    <widget class="QMenu" name="menu_3">
     <property name="title">
      <string>格式(&amp;O)</string>
     </property>
+    <addaction name="action_auto_line"/>
+    <addaction name="action_font"/>
    </widget>
    <widget class="QMenu" name="menu_4">
     <property name="title">
      <string>查看(&amp;V)</string>
     </property>
+    <addaction name="action_status"/>
    </widget>
    <widget class="QMenu" name="menu_5">
     <property name="title">
      <string>帮助(&amp;H)</string>
     </property>
+    <addaction name="action_help"/>
+    <addaction name="action_about"/>
    </widget>
    <addaction name="menu"/>
    <addaction name="menu_2"/>
@@ -90,7 +114,7 @@
   </widget>
   <action name="actionnew">
    <property name="text">
-    <string>新建</string>
+    <string>新建(&amp;N)</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
@@ -98,7 +122,7 @@
   </action>
   <action name="actionopen">
    <property name="text">
-    <string>打开</string>
+    <string>打开(&amp;O)</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
@@ -106,7 +130,7 @@
   </action>
   <action name="actionsave">
    <property name="text">
-    <string>保存</string>
+    <string>保存(&amp;S)</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -114,38 +138,141 @@
   </action>
   <action name="actionsaveAs">
    <property name="text">
-    <string>另存为...</string>
+    <string>另存为(&amp;A)...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+S</string>
    </property>
   </action>
-  <action name="actionexit">
+  <action name="action_pag_set">
    <property name="text">
-    <string>退出</string>
+    <string>页面设置(&amp;U)</string>
+   </property>
+  </action>
+  <action name="action_print">
+   <property name="text">
+    <string>打印(&amp;P)...</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Q</string>
+    <string>Ctrl+P</string>
    </property>
   </action>
-  <action name="actioncopy">
+  <action name="action_close">
    <property name="text">
-    <string>copy</string>
+    <string>退出(&amp;X)</string>
    </property>
   </action>
-  <action name="actionpaste">
+  <action name="action_cancel">
    <property name="text">
-    <string>paste</string>
+    <string>撤销(&amp;U)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
    </property>
   </action>
-  <action name="actionfind">
+  <action name="action_cut">
    <property name="text">
-    <string>find</string>
+    <string>剪切(&amp;T)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
    </property>
   </action>
-  <action name="actiondatatime">
+  <action name="action_copy">
    <property name="text">
-    <string>datatime</string>
+    <string>复制(&amp;C)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="action_past">
+   <property name="text">
+    <string>粘贴(&amp;P)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+V</string>
+   </property>
+  </action>
+  <action name="action_del">
+   <property name="text">
+    <string>删除(&amp;L)</string>
+   </property>
+   <property name="shortcut">
+    <string>Del</string>
+   </property>
+  </action>
+  <action name="action1_find">
+   <property name="text">
+    <string>查找(&amp;F)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="action_find_next">
+   <property name="text">
+    <string>查找下一个(&amp;N)</string>
+   </property>
+   <property name="shortcut">
+    <string>F3</string>
+   </property>
+  </action>
+  <action name="action_replace">
+   <property name="text">
+    <string>替换(&amp;R)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H</string>
+   </property>
+  </action>
+  <action name="action_turn_to">
+   <property name="text">
+    <string>转到(&amp;G)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+G</string>
+   </property>
+  </action>
+  <action name="action_select_all">
+   <property name="text">
+    <string>全选(&amp;A)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="action_date">
+   <property name="text">
+    <string>时间/日期(&amp;D)</string>
+   </property>
+   <property name="shortcut">
+    <string>F5</string>
+   </property>
+  </action>
+  <action name="action_auto_line">
+   <property name="text">
+    <string>自动换行(&amp;W)</string>
+   </property>
+  </action>
+  <action name="action_font">
+   <property name="text">
+    <string>字体(&amp;F)</string>
+   </property>
+  </action>
+  <action name="action_status">
+   <property name="text">
+    <string>状态栏(&amp;S)</string>
+   </property>
+  </action>
+  <action name="action_help">
+   <property name="text">
+    <string>查看帮助(&amp;H)</string>
+   </property>
+  </action>
+  <action name="action_about">
+   <property name="text">
+    <string>关于记事本(&amp;A)</string>
    </property>
   </action>
  </widget>

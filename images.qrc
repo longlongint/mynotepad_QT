@@ -1,0 +1,19 @@
+<RCC>
+    <qresource lang="chinese" prefix="/images">
+        <file>images/84646-106.jpg</file>
+        <file>images/193489-106.jpg</file>
+        <file>images/193529-106.jpg</file>
+        <file>images/290269-106.jpg</file>
+        <file>images/336852-106.jpg</file>
+        <file>images/337903-106.jpg</file>
+        <file>images/337969-106.jpg</file>
+        <file>images/345086-106.jpg</file>
+    </qresource>
+    <qresource prefix="/tool">
+        <file>tool_png/undo.png</file>
+        <file>tool_png/undo.ico</file>
+        <file>tool_png/cut.png</file>
+        <file>tool_png/paste.png</file>
+        <file>tool_png/redo.png</file>
+    </qresource>
+</RCC>

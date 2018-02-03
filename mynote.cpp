@@ -8,7 +8,8 @@ MyNote::MyNote(QWidget *parent) :
     ui->setupUi(this);
     //实例化查找对话框
     findDialog = new FindDialog(this);
-    connect(findDialog,SIGNAL(sigSendString(QString)),this,SLOT(onFindString(QString)));
+    //currentEditTextNamePath = new QString;
+    connect(findDialog,SIGNAL(sigSendString(QString,int)),this,SLOT(onFindString(QString,int)));
     connect(ui->actionnew,SIGNAL(triggered(bool)),this,SLOT(onNew()));
     connect(ui->actionopen,SIGNAL(triggered(bool)),this,SLOT(onOpen()));
     connect(ui->actionsaveAs,SIGNAL(triggered(bool)),this,SLOT(onSaveAs()));
@@ -17,13 +18,26 @@ MyNote::MyNote(QWidget *parent) :
     connect(ui->action1_find,SIGNAL(triggered(bool)),findDialog,SLOT(show()));
     connect(ui->action_copy,SIGNAL(triggered(bool)),ui->edit_text,SLOT(copy()));
     connect(ui->action_past,SIGNAL(triggered(bool)),ui->edit_text,SLOT(paste()));
+    connect(ui->action_cut,SIGNAL(triggered(bool)),ui->edit_text,SLOT(cut()));
+    connect(ui->action_cancel,SIGNAL(triggered(bool)),ui->edit_text,SLOT(undo()));
+    connect(ui->action_del,SIGNAL(triggered(bool)),ui->edit_text,SLOT(cut()));//删除不会
     connect(ui->action_date,SIGNAL(triggered(bool)),this,SLOT(onAddDateTime()));
 
     ui->action_auto_line->setCheckable(true);
     ui->action_auto_line->setChecked(true);
+    ui->action_status->setCheckable(true);
+    ui->action_status->setChecked(false);
+    ui->toolBar->hide();
+
+    connect(ui->action_status,SIGNAL(triggered(bool)),this,SLOT(onToolBar(bool)));
     connect(ui->action_auto_line,SIGNAL(triggered(bool)),this,SLOT(onAutoLine(bool)));
     connect(ui->action_font,SIGNAL(triggered(bool)),this,SLOT(onSetFont()));
     connect(ui->action_color,SIGNAL(triggered(bool)),this,SLOT(onSetColor()));
+
+    lbl_status = new QLabel;
+    ui->statusBar->addPermanentWidget(lbl_status);
+    lbl_status->setText("第 1 行，第 1 列");
+    connect(ui->edit_text,SIGNAL(cursorPositionChanged()),this,SLOT(onShowNumber()));
 }
 
 MyNote::~MyNote()
@@ -103,6 +117,7 @@ void MyNote::onNew()
                 break;
             case QMessageBox::Discard:
                 ui->edit_text->clear();
+                //delete currentEditTextNamePath;
                 currentEditTextNamePath=nullptr;
                 this->setWindowTitle(tr("无标题"));
                 break;
@@ -121,6 +136,7 @@ void MyNote::onOpen()
     currentEditTextNamePath = QFileDialog::getOpenFileName(this);
     if(currentEditTextNamePath.isEmpty())
     {
+        //delete currentEditTextNamePath;
         currentEditTextNamePath=nullptr;
         return ;
     }
@@ -143,7 +159,7 @@ void MyNote::onOpen()
 //保存文件
 void MyNote::onSave()
 {
-    if(currentEditTextNamePath==nullptr)
+    if(currentEditTextNamePath==0)
     {//如果当前文档没有被保存过
         if(!ui->edit_text->document()->isEmpty())
         {//如果有文字
@@ -227,10 +243,11 @@ void MyNote::onAddDateTime()
     ui->edit_text->insertPlainText(dt);
 }
 
-void MyNote::onFindString(QString text)
+void MyNote::onFindString(QString text,int direction_find)
 {
     qDebug() << text;
-    bool ok = ui->edit_text->find(text);
+    QTextDocument::FindFlags options = QTextDocument::FindFlags(direction_find);
+    bool ok = ui->edit_text->find(text,options);
     qDebug() << "ok = " << ok;
     this->activateWindow();
 }
@@ -248,13 +265,34 @@ void MyNote::onSetFont()
 {
     bool ok;
     QFont my_font=QFontDialog::getFont(&ok);
-    ui->edit_text->setFont(my_font);
+    if(ok){
+        ui->edit_text->setFont(my_font);
+    }
 }
 
 void MyNote::onSetColor()
 {
     QColor my_color = QColorDialog::getColor();
     ui->edit_text->setTextColor(my_color);
+}
+
+void MyNote::onShowNumber()
+{
+    //1.获取
+    int row = ui->edit_text->textCursor().blockNumber()+1;
+    int col = ui->edit_text->textCursor().columnNumber()+1;
+    //2.显示
+    QString msg = QString("第 %1 行,第 %2 列").arg(row).arg(col);
+    lbl_status->setText(msg);
+}
+
+void MyNote::onToolBar(bool ok)
+{
+    if(ok){
+        ui->toolBar->show();
+    }else{
+        ui->toolBar->hide();
+    }
 }
 
 

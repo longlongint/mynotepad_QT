@@ -38,7 +38,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
+       <string notr="true">border-image: url(:/images/images/193529-106.jpg);</string>
       </property>
      </widget>
     </item>
@@ -71,11 +71,8 @@
     <property name="title">
      <string>编辑(&amp;E)</string>
     </property>
-    <addaction name="action_cancel"/>
     <addaction name="separator"/>
-    <addaction name="action_cut"/>
     <addaction name="action_copy"/>
-    <addaction name="action_past"/>
     <addaction name="action_del"/>
     <addaction name="separator"/>
     <addaction name="action1_find"/>
@@ -114,6 +111,29 @@
    <addaction name="menu_5"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>20</height>
+    </size>
+   </property>
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(170, 255, 127);</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="action_cancel"/>
+   <addaction name="action_past"/>
+   <addaction name="action_cut"/>
+  </widget>
   <action name="actionnew">
    <property name="text">
     <string>新建(&amp;N)</string>
@@ -165,6 +185,10 @@
    </property>
   </action>
   <action name="action_cancel">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/tool/tool_png/undo.ico</normaloff>:/tool/tool_png/undo.ico</iconset>
+   </property>
    <property name="text">
     <string>撤销(&amp;U)</string>
    </property>
@@ -173,6 +197,10 @@
    </property>
   </action>
   <action name="action_cut">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/tool/tool_png/cut.png</normaloff>:/tool/tool_png/cut.png</iconset>
+   </property>
    <property name="text">
     <string>剪切(&amp;T)</string>
    </property>
@@ -189,6 +217,10 @@
    </property>
   </action>
   <action name="action_past">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/tool/tool_png/paste.png</normaloff>:/tool/tool_png/paste.png</iconset>
+   </property>
    <property name="text">
     <string>粘贴(&amp;P)</string>
    </property>
@@ -264,7 +296,7 @@
   </action>
   <action name="action_status">
    <property name="text">
-    <string>状态栏(&amp;S)</string>
+    <string>工具栏(&amp;S)</string>
    </property>
   </action>
   <action name="action_help">
@@ -284,6 +316,8 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
  <connections/>
 </ui>

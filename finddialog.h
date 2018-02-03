@@ -1,10 +1,12 @@
 #ifndef FINDDIALOG_H
 #define FINDDIALOG_H
-
+#include <cstdlib>
 #include <QDialog>
 #include <QLayout>
 #include <QtWidgets>
 #include <QRadioButton>
+#include <QDebug>
+#include <QTextEdit>
 
 class FindDialog : public QDialog
 {
@@ -17,12 +19,14 @@ public://公有成员
     void initUi();
 
 signals://信号
-    void sigSendString(QString);
+    void sigSendString(QString,int);
 public slots://槽函数
     void onBtnMoreClicked(bool ok);
     void onBtnFindClicked();
     void onTextChanged(QString text);
-
+    void onButtonClicked(QAbstractButton *button);
+    void onCaseSensitive(bool);
+    void onWholeWords(bool);
 private://私有成员
     QLabel *lbl_text;
     QLineEdit *edit_text;
@@ -30,10 +34,12 @@ private://私有成员
     QPushButton *btn_close;
     QPushButton *btn_more;
 
-    QRadioButton *cb_up;
+    int direction_flag;
+    QButtonGroup *m_pButtonGroup;
     QRadioButton *cb_down;
     QCheckBox *cb_case;
     QCheckBox *cb_whole;
+    QRadioButton *cb_up;
 
     QWidget *widget_up;
     QWidget *widget_down;

@@ -4,7 +4,7 @@
 #include <QDialog>
 #include <QLayout>
 #include <QtWidgets>
-
+#include <QRadioButton>
 
 class FindDialog : public QDialog
 {
@@ -30,8 +30,8 @@ private://私有成员
     QPushButton *btn_close;
     QPushButton *btn_more;
 
-    QCheckBox *cb_up;
-    QCheckBox *cb_down;
+    QRadioButton *cb_up;
+    QRadioButton *cb_down;
     QCheckBox *cb_case;
     QCheckBox *cb_whole;
 

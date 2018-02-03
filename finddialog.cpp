@@ -33,8 +33,8 @@ void FindDialog::initUi()
     btn_more->setCheckable(true);//设置按钮可选
 
     cb_case = new QCheckBox("option");
-    cb_up = new QCheckBox("option");
-    cb_down = new QCheckBox("option");
+    cb_up = new QRadioButton("向上搜索");
+    cb_down = new QRadioButton("向下搜索");
     cb_whole = new QCheckBox("option");
 
 

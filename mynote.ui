@@ -92,6 +92,7 @@
     </property>
     <addaction name="action_auto_line"/>
     <addaction name="action_font"/>
+    <addaction name="action_color"/>
    </widget>
    <widget class="QMenu" name="menu_4">
     <property name="title">
@@ -274,6 +275,11 @@
   <action name="action_about">
    <property name="text">
     <string>关于记事本(&amp;A)</string>
+   </property>
+  </action>
+  <action name="action_color">
+   <property name="text">
+    <string>颜色(&amp;C)</string>
    </property>
   </action>
  </widget>

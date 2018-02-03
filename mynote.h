@@ -7,6 +7,9 @@
 #include <QFile>
 #include <QDebug>
 #include <QTextStream>
+#include <QDateTime>
+#include <QFontDialog>
+#include <QColorDialog>
 #include "finddialog.h"
 
 namespace Ui {
@@ -26,7 +29,11 @@ public slots:
     void onOpen();
     void onSave();
     void onSaveAs();
+    void onAddDateTime();
     void onFindString(QString text);
+    void onAutoLine(bool ok);
+    void onSetFont();
+    void onSetColor();
 private:
     Ui::MyNote *ui;
     FindDialog *findDialog;

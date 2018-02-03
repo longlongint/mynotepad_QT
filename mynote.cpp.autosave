@@ -248,7 +248,9 @@ void MyNote::onSetFont()
 {
     bool ok;
     QFont my_font=QFontDialog::getFont(&ok);
-    ui->edit_text->setFont(my_font);
+    if(ok){
+        ui->edit_text->setFont(my_font);
+    }
 }
 
 void MyNote::onSetColor()
